@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     s.requires_arc = true
 
     s.dependency 'CSURITemplate'
-    s.dependency 'AFNetworking', '~> 1.3'
+    s.dependency 'AFNetworking', '~> 2.0'
 
     s.frameworks   = 'Security', 'SystemConfiguration', 'MobileCoreServices', 'CoreGraphics'    
 end

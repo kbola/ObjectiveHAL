@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		18405E084EE84B65AF4A3FF0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7688A979C64921A72D54A9 /* libPods.a */; };
-		9128A1B717C4080D00CE73D3 /* OHResourceRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9128A1B617C4080D00CE73D3 /* OHResourceRequestOperation.m */; };
 		915BC46B17ADF83000230C3C /* OHResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 915BC46717ADF83000230C3C /* OHResource.m */; };
 		915BC46C17ADF83000230C3C /* OHLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 915BC46917ADF83000230C3C /* OHLink.m */; };
 		9162596E17ADFED200C1791F /* OHLinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9162596A17ADFED200C1791F /* OHLinkTests.m */; };
@@ -45,7 +44,6 @@
 		917AC2FC17AF819E005D3A4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917AC2FB17AF819E005D3A4D /* UIKit.framework */; };
 		917AC2FD17AF81A9005D3A4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917AC2F917AF8198005D3A4D /* CoreGraphics.framework */; };
 		917AC2FE17AF81AE005D3A4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 917AC2FB17AF819E005D3A4D /* UIKit.framework */; };
-		9187244917CBEF5300AC905D /* OHLinkTraversalOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9187244817CBEF5300AC905D /* OHLinkTraversalOperation.m */; };
 		918E47F917B9551600E78CCB /* apps.json in Resources */ = {isa = PBXBuildFile; fileRef = 917AC2F417AF7CE1005D3A4D /* apps.json */; };
 		91BA8F6E17CC29E00074F6EC /* OHLinkTraverserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BA8F6D17CC29E00074F6EC /* OHLinkTraverserTests.m */; };
 		91ECCC6D17ADE63E00DDCCDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91ECCC6C17ADE63E00DDCCDC /* Foundation.framework */; };
@@ -55,6 +53,7 @@
 		91ECCC8217ADE63E00DDCCDC /* libObjectiveHAL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91ECCC6917ADE63E00DDCCDC /* libObjectiveHAL.a */; };
 		91ECCC8817ADE63E00DDCCDC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91ECCC8617ADE63E00DDCCDC /* InfoPlist.strings */; };
 		F0694C107CBD4BC581E7CA20 /* libPods-ObjectiveHALTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19DDC463AD3F4C19B4E6C52E /* libPods-ObjectiveHALTests.a */; };
+		F4489FEE18A6A8DE009C03C0 /* OHLinkTraversalOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4489FED18A6A8DE009C03C0 /* OHLinkTraversalOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,8 +82,6 @@
 /* Begin PBXFileReference section */
 		19DDC463AD3F4C19B4E6C52E /* libPods-ObjectiveHALTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjectiveHALTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E7688A979C64921A72D54A9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9128A1B517C4080D00CE73D3 /* OHResourceRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHResourceRequestOperation.h; sourceTree = "<group>"; };
-		9128A1B617C4080D00CE73D3 /* OHResourceRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHResourceRequestOperation.m; sourceTree = "<group>"; };
 		915BC46717ADF83000230C3C /* OHResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHResource.m; sourceTree = "<group>"; };
 		915BC46817ADF83000230C3C /* OHLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHLink.h; sourceTree = "<group>"; };
 		915BC46917ADF83000230C3C /* OHLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHLink.m; sourceTree = "<group>"; };
@@ -109,7 +106,6 @@
 		917AC2E117AF204C005D3A4D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		917AC2E317AF2053005D3A4D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		917AC2E517AF2059005D3A4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		917AC2ED17AF279B005D3A4D /* OHClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHClientTests.m; sourceTree = "<group>"; };
 		917AC2EF17AF2AC7005D3A4D /* travis */ = {isa = PBXFileReference; lastKnownFileType = folder; path = travis; sourceTree = "<group>"; };
 		917AC2F417AF7CE1005D3A4D /* apps.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = apps.json; path = apps/apps.json; sourceTree = "<group>"; };
 		917AC2F617AF7D26005D3A4D /* 3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = 3.json; path = app/3.json; sourceTree = "<group>"; };
@@ -119,8 +115,6 @@
 		917AC2FB17AF819E005D3A4D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		917AC30017AF89D8005D3A4D /* 1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = 1.json; path = category/1.json; sourceTree = "<group>"; };
 		917CE2EA17BDE5630029FDDB /* lighttpd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lighttpd; sourceTree = "<group>"; };
-		9187244717CBEF5300AC905D /* OHLinkTraversalOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHLinkTraversalOperation.h; sourceTree = "<group>"; };
-		9187244817CBEF5300AC905D /* OHLinkTraversalOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHLinkTraversalOperation.m; sourceTree = "<group>"; };
 		919FE04817CD23E30067DAF0 /* 1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 1.json; sourceTree = "<group>"; };
 		919FE04917CD23E30067DAF0 /* 2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 2.json; sourceTree = "<group>"; };
 		919FE04A17CD23E30067DAF0 /* 3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 3.json; sourceTree = "<group>"; };
@@ -135,6 +129,8 @@
 		91ECCC8517ADE63E00DDCCDC /* ObjectiveHALTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjectiveHALTests-Info.plist"; sourceTree = "<group>"; };
 		91ECCC8717ADE63E00DDCCDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BAAE93CD195A4CC18E5E82E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		F4489FEC18A6A8DE009C03C0 /* OHLinkTraversalOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHLinkTraversalOperation.h; sourceTree = "<group>"; };
+		F4489FED18A6A8DE009C03C0 /* OHLinkTraversalOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHLinkTraversalOperation.m; sourceTree = "<group>"; };
 		FD7FA26D3A9C4C4D978D7A7D /* Pods-ObjectiveHALTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjectiveHALTests.xcconfig"; path = "Pods/Pods-ObjectiveHALTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -275,12 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				9177FD5A17B04057001DEB66 /* HTTPStatusCodes.h */,
-				9187244717CBEF5300AC905D /* OHLinkTraversalOperation.h */,
-				9187244817CBEF5300AC905D /* OHLinkTraversalOperation.m */,
-				9128A1B517C4080D00CE73D3 /* OHResourceRequestOperation.h */,
-				9128A1B617C4080D00CE73D3 /* OHResourceRequestOperation.m */,
 				915BC46A17ADF83000230C3C /* OHResource.h */,
 				915BC46717ADF83000230C3C /* OHResource.m */,
+				F4489FEC18A6A8DE009C03C0 /* OHLinkTraversalOperation.h */,
+				F4489FED18A6A8DE009C03C0 /* OHLinkTraversalOperation.m */,
 				915BC46817ADF83000230C3C /* OHLink.h */,
 				915BC46917ADF83000230C3C /* OHLink.m */,
 				91ECCC7117ADE63E00DDCCDC /* ObjectiveHAL.h */,
@@ -300,7 +294,6 @@
 		91ECCC8317ADE63E00DDCCDC /* ObjectiveHALTests */ = {
 			isa = PBXGroup;
 			children = (
-				917AC2ED17AF279B005D3A4D /* OHClientTests.m */,
 				91BA8F6D17CC29E00074F6EC /* OHLinkTraverserTests.m */,
 				9162596A17ADFED200C1791F /* OHLinkTests.m */,
 				9162596B17ADFED200C1791F /* OHResourceTests.m */,
@@ -507,9 +500,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				915BC46B17ADF83000230C3C /* OHResource.m in Sources */,
+				F4489FEE18A6A8DE009C03C0 /* OHLinkTraversalOperation.m in Sources */,
 				915BC46C17ADF83000230C3C /* OHLink.m in Sources */,
-				9128A1B717C4080D00CE73D3 /* OHResourceRequestOperation.m in Sources */,
-				9187244917CBEF5300AC905D /* OHLinkTraversalOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

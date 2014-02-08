@@ -10,7 +10,7 @@
 
 @class OHLinkTraversalOperation;
 @class OHResource;
-@class AFHTTPClient;
+@class AFHTTPRequestOperationManager;
 
 /**
  */
@@ -42,9 +42,9 @@ typedef void (^OHCompletionHandler)();
  */
 @property (readonly, strong, nonatomic) NSString *path;
 
-/** The `AFHTTPClient` being used to manage this opeartion.
+/** The `AFHTTPRequestOperationManager` being used to manage this opeartion.
  */
-@property (readonly, strong, nonatomic) AFHTTPClient *client;
+@property (readonly, strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
 
 /** Construct a `OHLinkTraversalOperation` to traverse a link relation.
  
@@ -53,14 +53,14 @@ typedef void (^OHCompletionHandler)();
  
  @param rel The link relation that will be used to evaluate the `resource`.
  @param resource The HAL resource containing the links to the `rel`.
- @param client An `AFHTTPClient` used to perform the network operations.
+ @param requestOpertationManager An `AFHTTPRequestOperationManager` used to perform the network operations.
  @param handler A `OHLinkTraversalHandler` block, called for each resource
  found to match the given `rel`.
  @param completion A `OHCompletionHandler` block, called once all traversals
  for this operation have been completed.
  
  */
-+ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withClient:(AFHTTPClient *)client traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
 
 /** Construct a `OHLinkTraversalOperation` to traverse a path.
  
@@ -70,12 +70,12 @@ typedef void (^OHCompletionHandler)();
  relations in one of the other class methods.
  
  @param path The href for a resource that will be traversed to.
- @param client An `AFHTTPClient` used to perform the network operations.
+ @param requestOpertationManager An `AFHTTPRequestOperationManager` used to perform the network operations.
  @param handler A `OHLinkTraversalHandler` block, called for each resource
  found to match the given `rel`.
  @param completion A `OHCompletionHandler` block, called once all traversals
  for this operation have been completed.
  */
-+ (OHLinkTraversalOperation *)traversePath:(NSString *)path withClient:(AFHTTPClient *)client  traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traversePath:(NSString *)path withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
 
 @end

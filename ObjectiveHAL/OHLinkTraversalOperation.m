@@ -9,11 +9,9 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AFNetworking/AFNetworking.h>
-#import <AFNetworking/AFJSONRequestOperation.h>
 
 #import "OHLinkTraversalOperation.h"
 #import "OHResource.h"
-#import "OHResourceRequestOperation.h"
 
 @interface OHLinkTraversalOperation ()
 @property (readwrite, strong, nonatomic) NSString *rel;
@@ -30,20 +28,20 @@
 
 @property (readwrite, strong, nonatomic) NSMutableArray *resources;
 
-@property (readwrite, strong, nonatomic) AFHTTPClient *client;
+@property (readwrite, strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
 @end
 
 @implementation OHLinkTraversalOperation
 
-+ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withClient:(AFHTTPClient *)client traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion {
++ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion {
     
     OHLinkTraversalOperation *op = [[OHLinkTraversalOperation alloc] init];
-    op.operationQueue = client.operationQueue; // [[NSOperationQueue alloc] init];
+    op.operationQueue = requestOpertationManager.operationQueue; // [[NSOperationQueue alloc] init];
     op.rel = rel;
     op.path = nil;
     op.traversalHandler = handler;
     op.completionHandler = completion;
-    op.client = client;
+    op.requestOperationManager = requestOpertationManager;
     op.resource = resource;
     op.resources = [NSMutableArray array];
     
@@ -60,15 +58,15 @@
     return op;
 }
 
-+ (OHLinkTraversalOperation *)traversePath:(NSString *)path withClient:(AFHTTPClient *)client  traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion {
++ (OHLinkTraversalOperation *)traversePath:(NSString *)path withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion {
     
     OHLinkTraversalOperation *op = [[OHLinkTraversalOperation alloc] init];
-    op.operationQueue = client.operationQueue; // [[NSOperationQueue alloc] init];
+    op.operationQueue = requestOpertationManager.operationQueue; // [[NSOperationQueue alloc] init];
     op.path = path;
     op.rel = nil;
     op.traversalHandler = handler;
     op.completionHandler = completion;
-    op.client = client;
+    op.requestOperationManager = requestOpertationManager;
     op.resource = nil;
     op.resources = [NSMutableArray array];
 
@@ -92,7 +90,7 @@
     
     NSArray *nestedOperations = self.nestedOperations;
     [self queueDependentOperations:nestedOperations beforeOperation:callCompletionHandlerOp];
-    [[[self client] operationQueue] addOperation:callCompletionHandlerOp];
+    [self.operationQueue addOperation:callCompletionHandlerOp];
 }
 
 - (void)main {
@@ -118,8 +116,8 @@
 }
 
 - (void)processExternalOperations {
-    for (OHResourceRequestOperation *operation in self.externalOperations) {
-        id resourceJSON = [operation responseJSON];
+    for (AFHTTPRequestOperation *operation in self.externalOperations) {
+        id resourceJSON = [operation responseObject];
         if (resourceJSON) {
             OHResource *resource = [OHResource resourceWithJSONData:resourceJSON];
             if (resource) {
@@ -213,12 +211,15 @@
 }
 
 - (NSOperation *)operationToTraversePath:(NSString *)path {
-    NSMutableURLRequest *request = [self.client requestWithMethod:@"GET" path:path parameters:nil];
+    NSURL *url = [NSURL URLWithString:path relativeToURL:self.requestOperationManager.baseURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
     // TODO: Look into proper way to handle cached responses so we can re-enable the default cache policy.
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
     
-    OHResourceRequestOperation *op = [[OHResourceRequestOperation alloc] initWithRequest:request];
+    AFHTTPRequestOperation* op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    
     return op;
 }
 
