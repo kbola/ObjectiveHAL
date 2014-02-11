@@ -19,17 +19,13 @@ PODS:
     - AFNetworking/NSURLConnection
   - CocoaLumberjack (1.6.2)
   - CSURITemplate (0.3)
-  - FSClassExtensions (1.1.1):
-    - FSClassExtensions/Shared
-  - FSClassExtensions/SenTesting (1.1.1)
-  - FSClassExtensions/Shared (1.1.1)
+  - FSClassExtensions/SenTesting (1.6.0)
   - OCHamcrest (3.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CocoaLumberjack
   - CSURITemplate
-  - FSClassExtensions
   - FSClassExtensions/SenTesting
   - OCHamcrest
 
@@ -37,7 +33,7 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   CocoaLumberjack: 19dceba2d0360ed383cba983bc3ef0dd089c42a1
   CSURITemplate: a2ab0f383c600646468de33b65f58f901388d8d4
-  FSClassExtensions: aa21afcaf158f504a2bd4dc92560d479575f6d84
+  FSClassExtensions: ab8f0d67f3a2d47cfcfba02b338895136f41d9c3
   OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
 
 COCOAPODS: 0.29.0

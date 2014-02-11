@@ -8,5 +8,3 @@ end
 
 pod 'CSURITemplate'
 pod 'AFNetworking', '~> 2.0'
-pod 'FSClassExtensions'
-

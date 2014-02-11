@@ -15,4 +15,3 @@
 #import <ObjectiveHAL/OHResource.h>
 
 #import <ObjectiveHAL/OHLinkTraversalOperation.h>
-#import <ObjectiveHAL/OHResourceRequestOperation.h>
