@@ -210,15 +210,25 @@
     return op;
 }
 
+
 - (NSOperation *)operationToTraversePath:(NSString *)path {
+    
+    NSLog(@"Generating request for %@", path);
+    
     NSURL *url = [NSURL URLWithString:path relativeToURL:self.requestOperationManager.baseURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSDictionary * requestHeaders = self.requestOperationManager.requestSerializer.HTTPRequestHeaders;
+    for(NSString * key in requestHeaders){
+        [request setValue:[requestHeaders valueForKey:key] forHTTPHeaderField:key];
+    }
     
     // TODO: Look into proper way to handle cached responses so we can re-enable the default cache policy.
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
     
     AFHTTPRequestOperation* op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
+    [op.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"application/hal+json"]];
     
     return op;
 }
