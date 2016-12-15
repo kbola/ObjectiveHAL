@@ -90,6 +90,8 @@
     }
     
     [op getURL:path withCompletion:completion];
+    
+    return op;
 
 }
 
