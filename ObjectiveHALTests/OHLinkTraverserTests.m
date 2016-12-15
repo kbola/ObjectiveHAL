@@ -32,7 +32,7 @@
 
 @interface OHLinkTraverserTests : SenTestCase
 @property (readwrite, strong, nonatomic) NSURL *baseURL;
-@property (readwrite, strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
+@property (readwrite, strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (readwrite, assign, nonatomic) NSTimeInterval timeout;
 @end
 
@@ -40,7 +40,7 @@
 
 - (void)setUp {
     self.baseURL = [NSURL URLWithString:@"http://localhost:7100"];
-    self.requestOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
+    self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL];
     self.timeout = 30;
     NSLog(@"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
 }
@@ -53,7 +53,7 @@
     
     OHResource * __block rootResource = nil;
     
-    OHLinkTraversalOperation *rootOp = [OHLinkTraversalOperation traversePath:rootObjectPath withRequestOperationManager:self.requestOperationManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
+    OHLinkTraversalOperation *rootOp = [OHLinkTraversalOperation traversePath:rootObjectPath withSessionManager:self.sessionManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
         assertThat(error, nilValue());
         assertThat(targetResource, notNilValue());
         rootResource = targetResource;
@@ -63,7 +63,7 @@
         [self signalAsyncTestCompleted];
     }];
     
-    [[self.requestOperationManager operationQueue] addOperation:rootOp];
+    [[self.sessionManager operationQueue] addOperation:rootOp];
     assertThatBool([self waitForAsyncTestCompletion:self.timeout], is(equalToBool(YES)));
     
     return rootResource;
@@ -90,7 +90,7 @@
     NSMutableArray * __block applications = [NSMutableArray array];
     
     // when
-    OHLinkTraversalOperation *appsOp = [OHLinkTraversalOperation traverseRel:@"r:app" inResource:rootResource withRequestOperationManager:self.requestOperationManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
+    OHLinkTraversalOperation *appsOp = [OHLinkTraversalOperation traverseRel:@"r:app" inResource:rootResource withSessionManager:self.sessionManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
         assertThat(error, nilValue());
         assertThat(targetResource, notNilValue());
         OHResource *application = targetResource;
@@ -101,7 +101,7 @@
         [self signalAsyncTestCompleted];
     }];
         
-    [[self.requestOperationManager operationQueue] addOperation:appsOp];
+    [[self.sessionManager operationQueue] addOperation:appsOp];
     assertThatBool([self waitForAsyncTestCompletion:self.timeout], is(equalToBool(YES)));
         
     // then
@@ -116,7 +116,7 @@
     NSMutableArray * __block icons = [NSMutableArray array];
     
     // when
-    OHLinkTraversalOperation *appsOp = [OHLinkTraversalOperation traverseRel:@"r:app" inResource:rootResource withRequestOperationManager:self.requestOperationManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
+    OHLinkTraversalOperation *appsOp = [OHLinkTraversalOperation traverseRel:@"r:app" inResource:rootResource withSessionManager:self.sessionManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
         assertThat(error, nilValue());
         assertThat(targetResource, notNilValue());
         
@@ -124,7 +124,7 @@
         
         [applications addObject:targetResource];
         
-        OHLinkTraversalOperation *iconOp = [OHLinkTraversalOperation traverseRel:@"app:icon" inResource:targetResource withRequestOperationManager:self.requestOperationManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
+        OHLinkTraversalOperation *iconOp = [OHLinkTraversalOperation traverseRel:@"app:icon" inResource:targetResource withSessionManager:self.sessionManager traversalHandler:^NSArray *(OHResource *targetResource, NSError *error) {
             assertThat(error, nilValue());
             assertThat(targetResource, notNilValue());
             
@@ -143,7 +143,7 @@
         [self signalAsyncTestCompleted];
     }];
     
-    [[self.requestOperationManager operationQueue] addOperation:appsOp];
+    [[self.sessionManager operationQueue] addOperation:appsOp];
     assertThatBool([self waitForAsyncTestCompletion:self.timeout], is(equalToBool(YES)));
     
     // then

@@ -10,7 +10,7 @@
 
 @class OHLinkTraversalOperation;
 @class OHResource;
-@class AFHTTPRequestOperationManager;
+@class AFHTTPSessionManager;
 
 /**
  */
@@ -18,7 +18,7 @@ typedef NSArray *(^OHLinkTraversalHandler)(OHResource *targetResource, NSError *
 
 /**
  */
-typedef void (^OHCompletionHandler)();
+typedef void (^OHCompletionHandler)(OHResource *targetResource, NSError *error);
 
 /** An operation used to perform link traversals between HAL resources.
  */
@@ -42,9 +42,9 @@ typedef void (^OHCompletionHandler)();
  */
 @property (readonly, strong, nonatomic) NSString *path;
 
-/** The `AFHTTPRequestOperationManager` being used to manage this opeartion.
+/** The `AFHTTPSessionManager` being used to manage this opeartion.
  */
-@property (readonly, strong, nonatomic) AFHTTPRequestOperationManager *requestOperationManager;
+@property (readonly, strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 /** Construct a `OHLinkTraversalOperation` to traverse a link relation.
  
@@ -53,14 +53,14 @@ typedef void (^OHCompletionHandler)();
  
  @param rel The link relation that will be used to evaluate the `resource`.
  @param resource The HAL resource containing the links to the `rel`.
- @param requestOpertationManager An `AFHTTPRequestOperationManager` used to perform the network operations.
+ @param requestOpertationManager An `AFHTTPSessionManager` used to perform the network operations.
  @param handler A `OHLinkTraversalHandler` block, called for each resource
  found to match the given `rel`.
  @param completion A `OHCompletionHandler` block, called once all traversals
  for this operation have been completed.
  
  */
-+ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withSessionManager:(AFHTTPSessionManager *)sessionManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
 
 /** Construct a `OHLinkTraversalOperation` to traverse a path.
  
@@ -76,6 +76,6 @@ typedef void (^OHCompletionHandler)();
  @param completion A `OHCompletionHandler` block, called once all traversals
  for this operation have been completed.
  */
-+ (OHLinkTraversalOperation *)traversePath:(NSString *)path withRequestOperationManager:(AFHTTPRequestOperationManager *)requestOpertationManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traversePath:(NSString *)path withSessionManager:(AFHTTPSessionManager *)sessionManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
 
 @end
