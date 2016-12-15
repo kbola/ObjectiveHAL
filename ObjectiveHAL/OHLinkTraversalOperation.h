@@ -60,7 +60,7 @@ typedef void (^OHCompletionHandler)(OHResource *targetResource, NSError *error);
  for this operation have been completed.
  
  */
-+ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withSessionManager:(AFHTTPSessionManager *)sessionManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traverseRel:(NSString *)rel inResource:(OHResource *)resource withSessionManager:(AFHTTPSessionManager *)sessionManager completion:(OHCompletionHandler)completion;
 
 /** Construct a `OHLinkTraversalOperation` to traverse a path.
  
@@ -76,6 +76,6 @@ typedef void (^OHCompletionHandler)(OHResource *targetResource, NSError *error);
  @param completion A `OHCompletionHandler` block, called once all traversals
  for this operation have been completed.
  */
-+ (OHLinkTraversalOperation *)traversePath:(NSString *)path withSessionManager:(AFHTTPSessionManager *)sessionManager traversalHandler:(OHLinkTraversalHandler)handler completion:(OHCompletionHandler)completion;
++ (OHLinkTraversalOperation *)traversePath:(NSString *)path withSessionManager:(AFHTTPSessionManager *)sessionManager completion:(OHCompletionHandler)completion;
 
 @end
