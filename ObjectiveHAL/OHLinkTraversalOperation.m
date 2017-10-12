@@ -41,6 +41,8 @@
         completion(nil, error);
     }
     
+    NSLog(@"ObjectiveHAL: OHLinkTraversalOperation: getURL: %@", fullURL);
+    
     [self.sessionManager GET:fullURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         
         NSLog(@"JSON: %@", responseObject);
@@ -89,7 +91,13 @@
         path = [link href];
     }
     
-    [op getURL:path withCompletion:completion];
+    NSURLComponents *components = [NSURLComponents componentsWithString:path];
+    
+
+    NSURLQueryItem *limit = [NSURLQueryItem queryItemWithName:@"limit" value:@"100"];
+    components.queryItems = [components.queryItems arrayByAddingObjectsFromArray:@[limit]];
+    
+    [op getURL:components.URL.absoluteString withCompletion:completion];
     
     return op;
 
@@ -110,7 +118,13 @@
     op.resources = [NSMutableArray array];
     
     NSURL * url = [NSURL URLWithString:path relativeToURL:op.sessionManager.baseURL];
-    [op getURL:url.absoluteString withCompletion:completion];
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:url.absoluteString];
+
+    NSURLQueryItem *limit = [NSURLQueryItem queryItemWithName:@"limit" value:@"100"];
+    components.queryItems = [components.queryItems arrayByAddingObjectsFromArray:@[limit]];
+
+    [op getURL:components.URL.absoluteString withCompletion:completion];
     
     return op;
 }
