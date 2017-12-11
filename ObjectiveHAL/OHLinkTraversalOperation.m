@@ -95,6 +95,11 @@
     
 
     NSURLQueryItem *limit = [NSURLQueryItem queryItemWithName:@"limit" value:@"100"];
+    
+    if(!components.queryItems){
+        components.queryItems = [NSArray new];
+    }
+    
     components.queryItems = [components.queryItems arrayByAddingObjectsFromArray:@[limit]];
     
     [op getURL:components.URL.absoluteString withCompletion:completion];
@@ -122,6 +127,11 @@
     NSURLComponents *components = [NSURLComponents componentsWithString:url.absoluteString];
 
     NSURLQueryItem *limit = [NSURLQueryItem queryItemWithName:@"limit" value:@"100"];
+    
+    if(!components.queryItems){
+        components.queryItems = [NSArray new];
+    }
+    
     components.queryItems = [components.queryItems arrayByAddingObjectsFromArray:@[limit]];
 
     [op getURL:components.URL.absoluteString withCompletion:completion];
